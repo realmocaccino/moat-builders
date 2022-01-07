@@ -12,3 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::group(['prefix' => 'login', 'as' => 'login.'], function() {
+    Route::get('/', 'LoginController@index')->name('index');
+    Route::post('authenticate', 'LoginController@authenticate')->name('authenticate');
+});
