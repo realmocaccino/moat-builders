@@ -12,7 +12,7 @@
     <form id="login-form" method="post" action="{{ route('login.authenticate') }}">
         <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
         	<label for="login-form-username">@lang('login.username')</label>
-            <input id="login-form-username" name="username" type="username" value="{{ old('username') }}" class="form-control">
+            <input id="login-form-username" name="username" type="text" value="{{ old('username') }}" class="form-control">
             @if($errors->has('username'))
                 <span class="help-block">
                     <strong>{{ $errors->first('username') }}</strong>
