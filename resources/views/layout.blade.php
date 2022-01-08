@@ -4,7 +4,7 @@
 		<title>@yield('title') - Moat Builders App</title>
 	</head>
 	<body>
-	    <h1>Moat Builders App</h1>
+	    <h1><a href="{{ route('home') }}">Moat Builders App</a></h1>
 	    @auth
 	        <p>@lang('layout.hello') {{ auth()->user()->name }}</p>
 	        <p><a href="{{ route('logout') }}">@lang('layout.logout')</a></p>
