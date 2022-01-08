@@ -4,12 +4,12 @@
 
 @section('content')
 
-    <h1>Artists</h1>
+    <h2>Artists</h2>
     @if(count($artists))
         <ul>
         @foreach($artists as $artist)
             <li>
-                <h2>{{ $artist[0]['name'] }}</h2>
+                <h3>{{ $artist[0]['name'] }}</h3>
                 <p><strong>twitter:</strong> {{ $artist[0]['twitter'] }}</p>
             </li>
         @endforeach

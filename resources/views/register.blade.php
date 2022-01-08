@@ -4,6 +4,7 @@
 
 @section('content')
 
+    <h2>@lang('register.title')</h2>
     <form id="register-form" method="post" action="{{ route('register.submit') }}">
         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
         	<label for="register-form-name">@lang('register.name')</label>
@@ -48,5 +49,6 @@
         </div>
         {!! csrf_field() !!}
     </form>
+    <p><a href="{{ route('login.index') }}">@lang('login_instead')</a></p>
     
 @endsection
