@@ -13,12 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => 'login', 'as' => 'login.'], function() {
-    Route::get('/', 'LoginController@index')->name('index');
-    Route::post('authenticate', 'LoginController@authenticate')->name('authenticate');
+Route::middleware('guest')->group(function() {
+    Route::group(['prefix' => 'login', 'as' => 'login.'], function() {
+        Route::get('/', 'LoginController@index')->name('index');
+        Route::post('authenticate', 'LoginController@authenticate')->name('authenticate');
+    });
+
+    Route::group(['prefix' => 'register', 'as' => 'register.'], function() {
+        Route::get('/', 'RegisterController@index')->name('index');
+        Route::post('submit', 'RegisterController@submit')->name('submit');
+    });
 });
 
-Route::group(['prefix' => 'register', 'as' => 'register.'], function() {
-    Route::get('/', 'RegisterController@index')->name('index');
-    Route::post('submit', 'RegisterController@submit')->name('submit');
+Route::middleware('auth')->group(function() {
+    Route::get('/', 'HomeController@index')->name('home');
 });

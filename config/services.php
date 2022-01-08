@@ -29,5 +29,10 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    
+    'moat_builders' => [
+        'endpoint' => env('MOAT_BUILDERS_ENDPOINT', 'https://moat.ai/api/task'),
+        'secret' => env('MOAT_BUILDERS_SECRET')
+    ]
 
 ];
