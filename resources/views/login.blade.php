@@ -34,6 +34,6 @@
         </div>
         {!! csrf_field() !!}
     </form>
-    <p><a href="{{ route('register.index') }}">@lang('register_instead')</a></p>
+    <p><a href="{{ route('register.index') }}">@lang('login.register_instead')</a></p>
     
 @endsection

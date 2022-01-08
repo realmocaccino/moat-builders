@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <h2>Artists</h2>
+    <h2>@lang('home.artists')</h2>
     @if(count($artists))
         <ul>
         @foreach($artists as $artist)
