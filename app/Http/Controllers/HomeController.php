@@ -1,27 +1,14 @@
 <?php
 namespace App\Http\Controllers;
 
-use GuzzleHttp\Client;
+use App\Http\Services\ArtistsService;
 
 class HomeController extends Controller
 {
-    protected $client;
-
-    public function __construct()
-    {
-        $this->client = new Client([
-            'headers' => [
-                'Basic' => config('services.moat_builders.secret')
-            ]
-        ]);
-    }
-
-	public function index()
+	public function index(ArtistsService $artists)
 	{
-        $response = $this->client->get(config('services.moat_builders.endpoint'));
-
 		return view('home', [
-		    'artists' => json_decode($response->getBody()->getContents(), true)
+		    'artists' => $artists->get()
 		]);
 	}
 }
