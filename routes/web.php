@@ -29,7 +29,14 @@ Route::middleware('auth')->group(function() {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('logout', 'LoginController@logout')->name('logout');
     
-    Route::middleware('isAdmin')->group(function() {
-        
+    Route::get('artist/{artistId}/albums', 'AlbumsController@index')->name('artist.albums');
+    
+    Route::group(['prefix' => 'albums', 'as' => 'albums.'], function() {
+        Route::get('/', 'AlbumsController@index')->name('index');
+        Route::get('create/{artistId?}', 'AlbumsController@createPage')->name('createPage');
+        Route::post('create/{artistId?}', 'AlbumsController@create')->name('create');
+        Route::get('edit/{albumId}', 'AlbumsController@editPage')->name('editPage');
+        Route::post('edit/{albumId}', 'AlbumsController@edit')->name('edit');
+        Route::get('delete/{albumId}', 'AlbumsController@delete')->name('delete')->middleware('isAdmin');
     });
 });
