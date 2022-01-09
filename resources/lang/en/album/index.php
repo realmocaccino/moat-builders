@@ -5,7 +5,8 @@ return [
     'title' => 'Albums',
     'name' => 'Name',
     'year' => 'Year',
-    'edit_album' => 'Edit',
+    'edit' => 'Edit',
+    'delete' => 'Delete',
     'no_albums_yet' => 'No album created yet'
 
 ];

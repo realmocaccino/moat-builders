@@ -33,8 +33,8 @@ class User extends Authenticatable
         'password'
     ];
     
-    protected function isAdmin()
+    public function isAdmin()
     {
-        return (bool) $user->role === 'admin';
+        return $this->role === 'admin';
     }
 }

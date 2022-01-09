@@ -72,6 +72,10 @@ class AlbumsController extends Controller
 	
 	public function delete($albumId)
 	{
-	    
+	    $album = Album::findOrFail($albumId);
+	    $artistId = $album->artist_id;
+	    $album->delete();
+	
+	    return redirect()->route('artist.albums', $artistId);
 	}
 }

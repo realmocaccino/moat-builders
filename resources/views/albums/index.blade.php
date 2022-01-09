@@ -11,7 +11,7 @@
                 <li>
                     <p>@lang('album/index.name'): {{ $album->name }}</p>
                     <p>@lang('album/index.year'): {{ $album->year }}</p>
-                    <p><a href="{{ route('albums.editPage', $album->id) }}">@lang('album/index.edit_album')</a></p>
+                    <p><a href="{{ route('albums.editPage', $album->id) }}">@lang('album/index.edit')</a> @if(auth()->user()->isAdmin()) | <a href="{{ route('albums.delete', $album->id) }}">@lang('album/index.delete')</a> @endif</p>
                 </li>
             @endforeach
         </ul>
