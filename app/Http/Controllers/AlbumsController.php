@@ -26,17 +26,11 @@ class AlbumsController extends Controller
         ]);
     }
 
-	public function createPage($artistId = null)
+	public function createPage(ArtistsService $artists, $artistId = null)
 	{
-	    $artists = [];
-	
-	    if(!$artistId) {
-	        $artists = (new ArtistsService())->get();
-	    }
-	    
 		return view('albums.create', [
-		    'artistId' => $artistId,
-		    'artists' => $artists
+		    'artists' => $artists->get(),
+		    'artistId' => $artistId
 		]);
 	}
 	

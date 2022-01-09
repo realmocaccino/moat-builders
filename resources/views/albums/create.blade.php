@@ -15,23 +15,19 @@
                 </span>
             @endif
         </div>
-        @if($artists)
-            <div class="form-group{{ $errors->has('artist_id') ? ' has-error' : '' }}">
-            	<label for="album-create-form-artistId">@lang('album/create.artist')</label>
-                <select id="album-create-form-artistId" name="artist_id" class="form-control">
-                    @foreach($artists as $artist)
-                        <option value="{{ $artist->id }}" @if(old('artist_id') == $artist->id)) selected @endif>{{ $artist->name }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('artist_id'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('artist_id') }}</strong>
-                    </span>
-                @endif
-            </div>
-        @else
-            <input type="hidden" name="artist_id" value="{{ $artistId }}">
-        @endif
+        <div class="form-group{{ $errors->has('artist_id') ? ' has-error' : '' }}">
+        	<label for="album-create-form-artistId">@lang('album/create.artist')</label>
+            <select id="album-create-form-artistId" name="artist_id" class="form-control">
+                @foreach($artists as $artist)
+                    <option value="{{ $artist->id }}" @if(old('artist_id', $artistId) == $artist->id)) selected @endif>{{ $artist->name }}</option>
+                @endforeach
+            </select>
+            @if($errors->has('artist_id'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('artist_id') }}</strong>
+                </span>
+            @endif
+        </div>
         <div class="form-group{{ $errors->has('year') ? ' has-error' : '' }}">
         	<label for="album-create-form-year">@lang('album/create.year'):</label>
             <input id="album-create-form-year" name="year" type="text" value="{{ old('year') }}" class="form-control">
