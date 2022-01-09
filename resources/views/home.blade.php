@@ -9,10 +9,10 @@
         <ul>
         @foreach($artists as $artist)
             <li>
-                <img src="{{ asset('storage/artists/' . str_replace('@', '', strtolower($artist[0]['twitter']))) }}.jpeg">
-                <h3>{{ $artist[0]['name'] }}</h3>
-                <p><strong>twitter:</strong> {{ $artist[0]['twitter'] }}</p>
-                <p><a href="{{ route('artist.albums', $artist[0]['id']) }}">@lang('home.see_albums')</a> | <a href="{{ route('albums.createPage', $artist[0]['id']) }}">@lang('home.create_album')</a></p>
+                <img src="{{ asset('storage/artists/' . str_replace('@', '', strtolower($artist->twitter))) }}.jpeg">
+                <h3>{{ $artist->name }}</h3>
+                <p><strong>twitter:</strong> {{ $artist->twitter }}</p>
+                <p><a href="{{ route('artist.albums', $artist->id) }}">@lang('home.see_albums')</a> | <a href="{{ route('albums.createPage', $artist->id) }}">@lang('home.create_album')</a></p>
             </li>
         @endforeach
         </ul>

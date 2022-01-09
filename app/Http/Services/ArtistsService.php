@@ -18,8 +18,22 @@ class ArtistsService
     
     public function get()
     {
-        $response = $this->client->get(config('services.moat_builders.endpoint'));
+        $response = $this->client->get(config('services.moat_builders.endpoint'))->getBody()->getContents();
         
-        return json_decode($response->getBody()->getContents(), true);
+        return $this->treat($response);
+    }
+    
+    private function treat($json)
+    {
+        return $this->order(array_reduce(json_decode($json), 'array_merge', array()));
+    }
+    
+    private function order($data)
+    {
+        usort($data, function($a, $b) {
+            return strcmp($a->name, $b->name);
+        });
+        
+        return $data;
     }
 }

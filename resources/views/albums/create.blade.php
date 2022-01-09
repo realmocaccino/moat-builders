@@ -20,7 +20,7 @@
             	<label for="album-create-form-artistId">@lang('album/create.artist')</label>
                 <select id="album-create-form-artistId" name="artist_id" class="form-control">
                     @foreach($artists as $artist)
-                        <option value="{{ $artist[0]['id'] }}" @if(old('artist_id') == $artist[0]['id'])) selected @endif>{{ $artist[0]['name'] }}</option>
+                        <option value="{{ $artist->id }}" @if(old('artist_id') == $artist->id)) selected @endif>{{ $artist->name }}</option>
                     @endforeach
                 </select>
                 @if($errors->has('artist_id'))
