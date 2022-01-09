@@ -48,7 +48,7 @@ class AlbumsController extends Controller
 	    $album->year = $request->year;
 	    $album->save();
 	    
-	    return redirect()->route('home');
+	    return redirect()->route('artist.albums', $album->artist_id);
 	}
 	
 	public function editPage($albumId)
