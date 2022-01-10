@@ -1,0 +1,10 @@
+ul#artists-list {}
+
+ul#artists-list li {
+    float: left;
+    margin: 0 30px 30px;
+}
+
+ul#artists-list li .card {
+    width: 14rem;
+}
