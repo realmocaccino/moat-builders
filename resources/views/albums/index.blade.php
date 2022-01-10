@@ -10,6 +10,7 @@
             <div id="album-artist-card-data">
                 <h5 class="card-title">{{ $artist->name }}</h5>
                 <p class="card-text"><i class="bi bi-twitter"></i> <a href="https://twitter.com/{{ $artist->twitter }}" target="_blank">{{ $artist->twitter }}</a></p>
+                <p><a class="btn btn-sm btn-info" href="{{ route('albums.createPage', isset($artist) ? $artist->id : null) }}">@lang('home.create_album')</a></p>
             </div>
         </div>
     @endif
