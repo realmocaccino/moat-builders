@@ -16,7 +16,7 @@ class LoginController extends Controller
 		if(Auth::attempt($request->only(['username', 'password']))) {
 			return redirect()->route('home');
 		} else {
-			return back()->withInput()->withErrors(['failed-login' => 'Sorry, we couldn\'t find an account with this username. Please check you\'re using the right username and try again.']);
+			return back()->withInput()->withErrors(['failed-login' => trans('login.failed')]);
 		}
 	}
 	

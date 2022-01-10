@@ -6,9 +6,7 @@
 
     <div class="container">
         @if($errors->has('failed-login'))
-            <span class="help-block">
-                <strong>{{ $errors->first('failed-login') }}</strong>
-            </span>
+            <div class="alert alert-warning">{{ $errors->first('failed-login') }}</div>
         @endif
         <form id="login-form" method="post" action="{{ route('login.authenticate') }}">
             <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
