@@ -12,7 +12,7 @@
                     <img class="card-img-top" src="{{ asset($artist->picture) }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ $artist->name }}</h5>
-                        <p class="card-text"><strong>twitter:</strong> <a href="https://twitter.com/{{ $artist->twitter }}" target="_blank">{{ $artist->twitter }}</p>
+                        <p class="card-text"><i class="bi bi-twitter"></i> <a href="https://twitter.com/{{ $artist->twitter }}" target="_blank">{{ $artist->twitter }}</a></p>
                         <a href="{{ route('artist.albums', $artist->id) }}" class="btn btn-primary btn-sm">@lang('home.see_albums')</a>
                         <a href="{{ route('albums.createPage', $artist->id) }}" class="btn btn-info btn-sm">@lang('home.create_album')</a>
                     </div>
