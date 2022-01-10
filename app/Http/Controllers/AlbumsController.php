@@ -41,11 +41,12 @@ class AlbumsController extends Controller
 	    return redirect()->route('artist.albums', $album->artist_id);
 	}
 	
-	public function editPage($albumId)
+	public function editPage(ArtistsService $artists, $albumId)
 	{
 	    $album = Album::findOrFail($albumId);
 	
 		return view('albums.edit', [
+		    'artists' => $artists->all(),
 		    'album' => $album
 		]);
 	}
@@ -54,6 +55,7 @@ class AlbumsController extends Controller
 	{
 	    $album = Album::findOrFail($albumId);
 	    $album->name = $request->name;
+	    $album->artist_id = $request->artist_id;
 	    $album->year = $request->year;
 	    $album->save();
 	    

@@ -15,7 +15,21 @@
                         <strong>{{ $errors->first('name') }}</strong>
                     </span>
                 @endif
-            </div><div class="form-group{{ $errors->has('year') ? ' has-error' : '' }}">
+            </div>
+            <div class="form-group{{ $errors->has('artist_id') ? ' has-error' : '' }}">
+            	<label for="album-create-form-artistId">@lang('album/edit.artist')</label>
+                <select id="album-create-form-artistId" name="artist_id" class="form-control">
+                    @foreach($artists as $artist)
+                        <option value="{{ $artist->id }}" @if(old('artist_id', $album->artist_id) == $artist->id)) selected @endif>{{ $artist->name }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('artist_id'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('artist_id') }}</strong>
+                    </span>
+                @endif
+            </div>
+            <div class="form-group{{ $errors->has('year') ? ' has-error' : '' }}">
             	<label for="album-edit-form-year">@lang('album/edit.year'):</label>
                 <input id="album-edit-form-year" name="year" type="text" value="{{ old('year', $album->year) }}" class="form-control">
                 @if($errors->has('year'))
