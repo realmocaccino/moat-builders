@@ -1,4 +1,13 @@
-ul#artists-list {}
+#header {}
+
+#content {
+    padding-top: 30px;
+}
+
+ul#artists-list {
+    overflow: hidden;
+    
+}
 
 ul#artists-list li {
     float: left;
@@ -6,7 +15,7 @@ ul#artists-list li {
 }
 
 ul#artists-list li .card {
-    width: 14rem;
+    width: 15rem;
 }
 
 ul#artists-list li .card img {
