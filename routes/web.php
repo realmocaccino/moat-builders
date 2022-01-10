@@ -36,7 +36,8 @@ Route::middleware('auth')->group(function() {
         Route::get('create/{artistId?}', 'AlbumsController@createPage')->name('createPage');
         Route::post('create/{artistId?}', 'AlbumsController@create')->name('create');
         Route::get('edit/{albumId}', 'AlbumsController@editPage')->name('editPage');
-        Route::post('edit/{albumId}', 'AlbumsController@edit')->name('edit');
-        Route::get('delete/{albumId}', 'AlbumsController@delete')->name('delete')->middleware('isAdmin');
+        Route::put('edit/{albumId}', 'AlbumsController@edit')->name('edit');
+        Route::get('delete/{albumId}', 'AlbumsController@deletePage')->name('deletePage')->middleware('isAdmin');
+        Route::delete('delete/{albumId}', 'AlbumsController@delete')->name('delete')->middleware('isAdmin');
     });
 });

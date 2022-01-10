@@ -41,6 +41,7 @@
             <div class="form-group">
                 <button id="album-edit-form-submit" type="submit" class="btn btn-block btn-primary">@lang('album/edit.submit')</button>
             </div>
+            {{ method_field('put') }}
             {!! csrf_field() !!}
         </form>
     </div>

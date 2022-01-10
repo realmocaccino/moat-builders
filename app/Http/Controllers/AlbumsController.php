@@ -62,6 +62,15 @@ class AlbumsController extends Controller
 	    return redirect()->route('artist.albums', $album->artist_id);
 	}
 	
+	public function deletePage($albumId)
+	{
+	    $album = Album::findOrFail($albumId);
+	    
+	    return view('albums.delete', [
+		    'album' => $album
+		]);
+	}
+	
 	public function delete($albumId)
 	{
 	    $album = Album::findOrFail($albumId);
