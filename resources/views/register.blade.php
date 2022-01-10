@@ -35,8 +35,8 @@
         <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
         	<label for="register-form-role">@lang('register.role')</label>
             <select id="register-form-role" name="role" class="form-control">
-                <option value="user" @if(old('role') == 'user')) selected @endif>@lang('register.role.user')</option>
-                <option value="admin" @if(old('role') == 'admin')) selected @endif>@lang('register.role.admin')</option>
+                <option value="user" @if(old('role') == 'user')) selected @endif>@lang('register.user')</option>
+                <option value="admin" @if(old('role') == 'admin')) selected @endif>@lang('register.admin')</option>
             </select>
             @if($errors->has('role'))
                 <span class="help-block">

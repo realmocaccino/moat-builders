@@ -7,6 +7,8 @@ return [
     'username' => 'Username',
     'password' => 'Password',
     'role' => 'Role',
+    'user' => 'User',
+    'admin' => 'Administrator',
     'submit' => 'Submit',
     'login_instead' => 'Login instead'
 

@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 class ArtistsService
 {
     protected $client;
+    protected $response;
 
     public function __construct()
     {
@@ -20,12 +21,27 @@ class ArtistsService
     {
         $response = $this->client->get(config('services.moat_builders.endpoint'))->getBody()->getContents();
         
-        return $this->treat($response);
+        return $this->treatResponse($response);
     }
     
-    private function treat($json)
+    private function treatResponse($response)
     {
-        return $this->order(array_reduce(json_decode($json), 'array_merge', array()));
+        $data = $this->json2array($response);
+        $data = $this->removeUnnecessaryArrays($data);
+        $data = $this->order($data);
+        $data = $this->addPictureAttribute($data);
+    
+        return $data;
+    }
+    
+    private function json2array($response)
+    {
+        return json_decode($response);
+    }
+    
+    private function removeUnnecessaryArrays($data)
+    {
+        return array_reduce($data, 'array_merge', array());
     }
     
     private function order($data)
@@ -33,6 +49,15 @@ class ArtistsService
         usort($data, function($a, $b) {
             return strcmp($a->name, $b->name);
         });
+        
+        return $data;
+    }
+    
+    private function addPictureAttribute($data)
+    {
+        foreach($data as $item) {
+            $item->picture = 'storage/artists/' . str_replace('@', '', strtolower($item->twitter)) . '.jpeg';
+        }
         
         return $data;
     }
