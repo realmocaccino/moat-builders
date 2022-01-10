@@ -6,7 +6,6 @@ use GuzzleHttp\Client;
 class ArtistsService
 {
     protected $client;
-    protected $response;
 
     public function __construct()
     {
@@ -17,33 +16,30 @@ class ArtistsService
         ]);
     }
     
+    private function get($endpoint)
+    {
+        return $this->client->get($endpoint)->getBody()->getContents();
+    }
+    
     public function all()
     {
         $response = $this->get(config('services.moat_builders.endpoint'));
         
-        return $this->treatResponse($response);
+        $data = $this->json2array($response);
+        $data = $this->removeUnnecessaryArrays($data);
+        $data = $this->order($data);
+        $data = $this->addPictureAttribute($data);
+        
+        return $data;
     }
     
     public function find($id)
     {
         $response = $this->get(config('services.moat_builders.endpoint') . '?artist_id=' . $id);
         
-        return $this->json2array($response)[0];
-    }
-    
-    private function get($endpoint)
-    {
-        return $this->client->get($endpoint)->getBody()->getContents();
-    }
-    
-    private function treatResponse($response)
-    {
         $data = $this->json2array($response);
-        $data = $this->removeUnnecessaryArrays($data);
-        $data = $this->order($data);
-        $data = $this->addPictureAttribute($data);
-    
-        return $data;
+         
+        return $data[0];
     }
     
     private function json2array($response)
