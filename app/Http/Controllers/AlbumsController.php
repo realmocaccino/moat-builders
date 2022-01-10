@@ -1,16 +1,16 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\Album;
+use App\Repositories\AlbumRepository;
 use App\Http\Requests\AlbumRequest;
 use App\Http\Services\ArtistsService;
 
 class AlbumsController extends Controller
 {
-    public function index()
+    public function index(AlbumRepository $albumRepository)
     {
         return view('albums.index', [
-            'albums' => Album::all()
+            'albums' => $albumRepository->all()
         ]);
     }
 
@@ -22,20 +22,16 @@ class AlbumsController extends Controller
 		]);
 	}
 	
-	public function create(AlbumRequest $request)
+	public function create(AlbumRequest $request, AlbumRepository $albumRepository)
 	{
-	    $album = new Album;
-	    $album->name = $request->name;
-	    $album->artist_id = $request->artist_id;
-	    $album->year = $request->year;
-	    $album->save();
+	    $album = $albumRepository->create($request);
 	    
 	    return redirect()->route('artist.albums', $album->artist_id);
 	}
 	
-	public function editPage(ArtistsService $artists, $albumId)
+	public function editPage(ArtistsService $artists, AlbumRepository $albumRepository, $albumId)
 	{
-	    $album = Album::findOrFail($albumId);
+	    $album = $albumRepository->findOrFail($albumId);
 	
 		return view('albums.edit', [
 		    'artists' => $artists->all(),
@@ -43,31 +39,28 @@ class AlbumsController extends Controller
 		]);
 	}
 	
-	public function edit(AlbumRequest $request, $albumId)
+	public function edit(AlbumRequest $request, AlbumRepository $albumRepository, $albumId)
 	{
-	    $album = Album::findOrFail($albumId);
-	    $album->name = $request->name;
-	    $album->artist_id = $request->artist_id;
-	    $album->year = $request->year;
-	    $album->save();
+	    $album = $albumRepository->update($albumId, $request);
 	    
 	    return redirect()->route('artist.albums', $album->artist_id);
 	}
 	
-	public function deletePage($albumId)
+	public function deletePage(AlbumRepository $albumRepository, $albumId)
 	{
-	    $album = Album::findOrFail($albumId);
+	    $album = $albumRepository->findOrFail($albumId);
 	    
 	    return view('albums.delete', [
 		    'album' => $album
 		]);
 	}
 	
-	public function delete($albumId)
+	public function delete(AlbumRepository $albumRepository, $albumId)
 	{
-	    $album = Album::findOrFail($albumId);
+	    $album = $albumRepository->findOrFail($albumId);
 	    $artistId = $album->artist_id;
-	    $album->delete();
+	
+	    $albumRepository->delete($albumId);
 	
 	    return redirect()->route('artist.albums', $artistId);
 	}
