@@ -7,18 +7,10 @@ use App\Http\Services\ArtistsService;
 
 class AlbumsController extends Controller
 {
-    public function index(ArtistsService $artists)
+    public function index()
     {
-        $albums = Album::all();
-        $artists = $artists->all();
-        $artistsNames = array_combine(array_column($artists, 'id'), array_column($artists, 'name'));
-        
-        foreach($albums as $album) {
-            $album->artistName = $artistsNames[$album->artist_id];
-        }
- 
         return view('albums.index', [
-            'albums' => $albums
+            'albums' => Album::all()
         ]);
     }
 

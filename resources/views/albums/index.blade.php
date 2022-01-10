@@ -21,7 +21,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $album->name }}</h5>
                         <p class="card-text">
-                            <strong>@lang('album/index.artist'):</strong> {{ $album->artistName }}<br>
+                            <strong>@lang('album/index.artist'):</strong> {{ $album->artist()->name }}<br>
                             <strong>@lang('album/index.year'):</strong> {{ $album->year }}
                         </p>
                         <a href="{{ route('albums.editPage', $album->id) }}" class="btn btn-sm btn-primary">@lang('album/index.edit')</a>
@@ -36,7 +36,7 @@
     @else
         <div class="container">
             <p>@lang('album/index.no_albums_yet')</p>
-            <p><a href="{{ route('albums.createPage', $artistId ?? null) }}">@lang('home.create_album')</a></p>
+            <p><a href="{{ route('albums.createPage', isset($artist) ? $artist->id : null) }}">@lang('home.create_album')</a></p>
         </div>
     @endif
     
