@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Home')
+@section('title', 'Artists')
 
 @section('content')
 
