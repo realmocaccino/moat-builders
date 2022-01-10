@@ -25,8 +25,10 @@
         @endforeach
         </ul>
     @else
-        <p>@lang('album/index.no_albums_yet')</p>
-        <p><a href="{{ route('albums.createPage', $artistId ?? null) }}">@lang('home.create_album')</a></p>
+        <div class="container">
+            <p>@lang('album/index.no_albums_yet')</p>
+            <p><a href="{{ route('albums.createPage', $artistId ?? null) }}">@lang('home.create_album')</a></p>
+        </div>
     @endif
     
 @endsection
