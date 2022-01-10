@@ -7,29 +7,25 @@ use App\Http\Services\ArtistsService;
 
 class AlbumsController extends Controller
 {
-    protected $album;
-
-    public function __construct()
+    public function index(ArtistsService $artists)
     {
-        $this->album = new Album;
-    }
-
-    public function index($artistId = null)
-    {
-        $albums = $this->album->when($artistId, function($query) use($artistId) {
-            return $query->whereArtistId($artistId);
-        })->get();
-    
+        $albums = Album::all();
+        $artists = $artists->all();
+        $artistsNames = array_combine(array_column($artists, 'id'), array_column($artists, 'name'));
+        
+        foreach($albums as $album) {
+            $album->artistName = $artistsNames[$album->artist_id];
+        }
+ 
         return view('albums.index', [
-            'albums' => $albums,
-            'artistId' => $artistId
+            'albums' => $albums
         ]);
     }
 
 	public function createPage(ArtistsService $artists, $artistId = null)
 	{
 		return view('albums.create', [
-		    'artists' => $artists->get(),
+		    'artists' => $artists->all(),
 		    'artistId' => $artistId
 		]);
 	}

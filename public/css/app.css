@@ -8,3 +8,7 @@ ul#artists-list li {
 ul#artists-list li .card {
     width: 14rem;
 }
+
+ul#artists-list li .card img {
+    border-radius: 50%;
+}

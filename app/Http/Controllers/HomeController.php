@@ -8,7 +8,7 @@ class HomeController extends Controller
 	public function index(ArtistsService $artists)
 	{
 		return view('home', [
-		    'artists' => $artists->get()
+		    'artists' => $artists->all()
 		]);
 	}
 }

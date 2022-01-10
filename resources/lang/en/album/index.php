@@ -4,6 +4,7 @@ return [
 
     'title' => 'Albums',
     'name' => 'Name',
+    'artist' => 'Artist',
     'year' => 'Year',
     'edit' => 'Edit',
     'delete' => 'Delete',

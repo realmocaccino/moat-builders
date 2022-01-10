@@ -17,11 +17,23 @@ class ArtistsService
         ]);
     }
     
-    public function get()
+    public function all()
     {
-        $response = $this->client->get(config('services.moat_builders.endpoint'))->getBody()->getContents();
+        $response = $this->get(config('services.moat_builders.endpoint'));
         
         return $this->treatResponse($response);
+    }
+    
+    public function find($id)
+    {
+        $response = $this->get(config('services.moat_builders.endpoint') . '?artist_id=' . $id);
+        
+        return $this->json2array($response)[0];
+    }
+    
+    private function get($endpoint)
+    {
+        return $this->client->get($endpoint)->getBody()->getContents();
     }
     
     private function treatResponse($response)

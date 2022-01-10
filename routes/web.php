@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('logout', 'LoginController@logout')->name('logout');
     
-    Route::get('artist/{artistId}/albums', 'AlbumsController@index')->name('artist.albums');
+    Route::get('artist/{artistId}/albums', 'ArtistController@albums')->name('artist.albums');
     
     Route::group(['prefix' => 'albums', 'as' => 'albums.'], function() {
         Route::get('/', 'AlbumsController@index')->name('index');
