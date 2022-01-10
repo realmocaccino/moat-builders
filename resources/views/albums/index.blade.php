@@ -4,23 +4,29 @@
 
 @section('content')
 
-    <div class="container">
-        <h2>@lang('album/index.title')</h2>
-        @if(count($albums))
-            <ul>
-                @foreach($albums as $album)
-                    <li>
-                        <p>@lang('album/index.name'): {{ $album->name }}</p>
-                        <p>@lang('album/index.artist'): {{ $album->artistName }}</p>
-                        <p>@lang('album/index.year'): {{ $album->year }}</p>
-                        <p><a href="{{ route('albums.editPage', $album->id) }}">@lang('album/index.edit')</a> @if(auth()->user()->isAdmin()) | <a href="{{ route('albums.deletePage', $album->id) }}">@lang('album/index.delete')</a> @endif</p>
-                    </li>
-                @endforeach
-            </ul>
-        @else
-            @lang('album/index.no_albums_yet')
-        @endif
+    @if(count($albums))
+        <ul id="albums-list">
+        @foreach($albums as $album)
+            <li>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $album->name }}</h5>
+                        <p class="card-text">
+                            <strong>@lang('album/index.artist'):</strong> {{ $album->artistName }}<br>
+                            <strong>@lang('album/index.year'):</strong> {{ $album->year }}
+                        </p>
+                        <a href="{{ route('albums.editPage', $album->id) }}" class="btn btn-sm btn-primary">@lang('album/index.edit')</a>
+                        @if(auth()->user()->isAdmin())
+                            <a href="{{ route('albums.deletePage', $album->id) }}" class="btn btn-sm btn-danger">@lang('album/index.delete')</a>
+                        @endif
+                    </div>
+                </div>
+            </li>
+        @endforeach
+        </ul>
+    @else
+        <p>@lang('album/index.no_albums_yet')</p>
         <p><a href="{{ route('albums.createPage', $artistId ?? null) }}">@lang('home.create_album')</a></p>
-    </div>
+    @endif
     
 @endsection

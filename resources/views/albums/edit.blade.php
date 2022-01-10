@@ -39,7 +39,7 @@
                 @endif
             </div>
             <div class="form-group">
-                <button id="album-edit-form-submit" type="submit" class="btn btn-block btn-primary">@lang('album/edit.submit')</button>
+                <button id="album-edit-form-submit" type="submit" class="btn btn-primary">@lang('album/edit.submit')</button>
             </div>
             {{ method_field('put') }}
             {!! csrf_field() !!}

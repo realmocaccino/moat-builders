@@ -4,20 +4,23 @@
     padding-top: 30px;
 }
 
-ul#artists-list {
+ul#artists-list,
+ul#albums-list {
     overflow: hidden;
-    
 }
 
-ul#artists-list li {
+ul#artists-list li,
+ul#albums-list li {
     float: left;
     margin: 0 30px 30px;
 }
 
-ul#artists-list li .card {
+ul#artists-list li .card,
+ul#albums-list li .card {
     width: 15rem;
 }
 
-ul#artists-list li .card img {
+ul#artists-list li .card img,
+ul#albums-list li .card img {
     border-radius: 50%;
 }
