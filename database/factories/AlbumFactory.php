@@ -3,9 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
-class UserFactory extends Factory
+class AlbumFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -15,10 +14,9 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
+            'artist_id' => 6,
             'name' => $this->faker->name(),
-            'username' => $this->faker->unique()->username(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
-            'role' => 'user',
+            'year' => $this->faker->year()
         ];
     }
 }
