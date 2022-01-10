@@ -25,19 +25,14 @@ class ArtistsService
     {
         $response = $this->get(config('services.moat_builders.endpoint'));
         
-        $data = $this->json2array($response);
-        $data = $this->removeUnnecessaryArrays($data);
-        $data = $this->order($data);
-        $data = $this->addPictureAttribute($data);
-        
-        return $data;
+        return $this->addPictureAttribute($this->order($this->removeUnnecessaryArrays($this->json2array($response))));
     }
     
     public function find($id)
     {
         $response = $this->get(config('services.moat_builders.endpoint') . '?artist_id=' . $id);
         
-        $data = $this->json2array($response);
+        $data = $this->addPictureAttribute($this->json2array($response));
          
         return $data[0];
     }

@@ -9,14 +9,15 @@ class ArtistController extends Controller
 	public function albums(ArtistsService $artists, $artistId)
 	{
         $albums = Album::whereArtistId($artistId)->get();
-        $artistName = $artists->find($artistId)->name;
+        $artist = $artists->find($artistId);
         
         foreach($albums as $album) {
-            $album->artistName = $artistName;
+            $album->artistName = $artist->name;
         }
  
         return view('albums.index', [
             'albums' => $albums,
+            'artist' => $artist,
             'artistId' => $artistId
         ]);
 	}

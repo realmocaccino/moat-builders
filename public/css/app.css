@@ -24,3 +24,15 @@ ul#artists-list li .card img,
 ul#albums-list li .card img {
     border-radius: 50%;
 }
+
+#albums-artist-card {}
+
+#album-artist-card-image {
+    float: left;
+    border-radius: 50%;
+}
+
+#album-artist-card-data {
+    float: left;
+    margin: 50px 0 0 20px;
+}

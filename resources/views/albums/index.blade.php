@@ -1,9 +1,18 @@
 @extends('layout')
 
-@section('title', 'Create Album')
+@section('title', 'Albums')
 
 @section('content')
 
+    @if(isset($artist))
+        <div id="album-artist-card">
+            <img id="album-artist-card-image" src="{{ asset($artist->picture) }}">
+            <div id="album-artist-card-data">
+                <h5 class="card-title">{{ $artist->name }}</h5>
+                <p class="card-text"><i class="bi bi-twitter"></i> <a href="https://twitter.com/{{ $artist->twitter }}" target="_blank">{{ $artist->twitter }}</a></p>
+            </div>
+        </div>
+    @endif
     @if(count($albums))
         <ul id="albums-list">
         @foreach($albums as $album)
