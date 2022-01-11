@@ -5,10 +5,10 @@
 @section('content')
 
     <div class="container">
-        @if($errors->has('failed-login'))
-            <div class="alert alert-warning">{{ $errors->first('failed-login') }}</div>
-        @endif
         <form id="login-form" method="post" action="{{ route('login.authenticate') }}">
+            @if($errors->has('failed-login'))
+                <div class="alert alert-warning">{{ $errors->first('failed-login') }}</div>
+            @endif
             <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
             	<label for="login-form-username">@lang('login.username')</label>
                 <input id="login-form-username" name="username" type="text" value="{{ old('username') }}" class="form-control">
