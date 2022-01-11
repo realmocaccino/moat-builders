@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.private')
 
 @section('title', 'Albums')
 

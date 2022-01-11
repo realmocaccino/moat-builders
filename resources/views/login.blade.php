@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.public')
 
 @section('title', 'Login')
 
@@ -28,11 +28,11 @@
                 @endif
             </div>
             <div class="form-group">
-                <button id="login-form-submit" type="submit" class="btn btn-block btn-primary">@lang('login.authenticate')</button>
+                <p><button id="login-form-submit" type="submit" class="btn btn-block btn-primary">@lang('login.authenticate')</button></p>
+                <p class="text-center"><a href="{{ route('register.index') }}">@lang('login.register_instead')</a></p>
             </div>
             {!! csrf_field() !!}
         </form>
-        <p><a href="{{ route('register.index') }}">@lang('login.register_instead')</a></p>
     </div>
     
 @endsection

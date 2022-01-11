@@ -4,6 +4,12 @@
     padding-top: 30px;
 }
 
+#login-form,
+#register-form {
+    width: 600px;
+    margin: 0 auto;
+}
+
 ul#artists-list,
 ul#albums-list {
     overflow: hidden;
