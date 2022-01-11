@@ -2,25 +2,27 @@
 namespace App\Repositories;
 
 use App\Models\Album;
+use App\Http\Requests\AlbumRequest;
+use Illuminate\Database\Eloquent\Collection;
 
 class AlbumRepository
 {
-    public function all()
+    public function all(): Collection
     {
         return Album::all();
     }
     
-    public function find($id)
+    public function find(string $id): Album
     {
        return Album::find($id); 
     }
     
-    public function findOrFail($id)
+    public function findOrFail(string $id): Album
     {
        return Album::findOrFail($id); 
     }
 
-    public function create($data)
+    public function create(AlbumRequest $data): Album
     {
         $album = new Album;
 	    $album->name = $data->name;
@@ -31,7 +33,7 @@ class AlbumRepository
 	    return $album;
     }
     
-    public function update($id, $data)
+    public function update(string $id, AlbumRequest $data): Album
     {
         $album = Album::findOrFail($id);
 	    $album->name = $data->name;
@@ -42,7 +44,7 @@ class AlbumRepository
 	    return $album;
     }
     
-    public function delete($id)
+    public function delete(string $id): void
     {
         Album::destroy($id);
     }

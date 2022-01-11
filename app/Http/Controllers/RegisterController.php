@@ -4,15 +4,17 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class RegisterController extends Controller
 {
-	public function index()
+	public function index(): View
 	{
 		return view('register');
 	}
 	
-	public function submit(RegisterRequest $request)
+	public function submit(RegisterRequest $request): RedirectResponse
 	{
 	    $user = new User;
 	    $user->name = $request->name;

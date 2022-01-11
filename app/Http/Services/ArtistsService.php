@@ -16,19 +16,19 @@ class ArtistsService
         ]);
     }
     
-    private function get($endpoint)
+    private function get(string $endpoint): string
     {
         return $this->client->get($endpoint)->getBody()->getContents();
     }
     
-    public function all()
+    public function all(): array
     {
         $response = $this->get(config('services.moat_builders.endpoint'));
         
         return $this->addPictureAttribute($this->order($this->removeUnnecessaryArrays($this->json2array($response))));
     }
     
-    public function find($id)
+    public function find(string $id): object
     {
         $response = $this->get(config('services.moat_builders.endpoint') . '?artist_id=' . $id);
         
@@ -37,17 +37,17 @@ class ArtistsService
         return $data[0];
     }
     
-    private function json2array($response)
+    private function json2array(string $response): array
     {
         return json_decode($response);
     }
     
-    private function removeUnnecessaryArrays($data)
+    private function removeUnnecessaryArrays(array $data): array
     {
         return array_reduce($data, 'array_merge', array());
     }
     
-    private function order($data)
+    private function order(array $data): array
     {
         usort($data, function($a, $b) {
             return strcmp($a->name, $b->name);
@@ -56,7 +56,7 @@ class ArtistsService
         return $data;
     }
     
-    private function addPictureAttribute($data)
+    private function addPictureAttribute(array $data): array
     {
         foreach($data as $item) {
             $item->picture = 'storage/artists/' . str_replace('@', '', strtolower($item->twitter)) . '.jpeg';
