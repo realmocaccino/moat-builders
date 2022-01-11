@@ -1,6 +1,6 @@
 @extends('layouts.private')
 
-@section('title', 'Edit Album')
+@section('title', 'Delete Album')
 
 @section('content')
 
